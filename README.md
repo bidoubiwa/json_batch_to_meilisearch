@@ -3,7 +3,6 @@
 
 Push a single file or a batch of files directly to meilisearch.
 
-
 ## Requirements
 
 - A running meilisearch

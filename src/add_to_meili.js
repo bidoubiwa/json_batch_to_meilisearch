@@ -58,7 +58,6 @@ async function json2Meili ({
 
     return updates
   } catch (e) {
-    // console.error(e)
     throw e
   }
 }

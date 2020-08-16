@@ -1,6 +1,5 @@
 # Json(s) to Meilisearch
 
-
 Push a single file or a batch of files directly to meilisearch.
 
 ## Requirements

@@ -1,0 +1,35 @@
+{
+  "name": "json2meili",
+  "version": "0.1.0",
+  "description": "Index a batch of json files into meilisearch",
+  "main": "index.js",
+  "bin": "./src/cli.js",
+  "scripts": {
+    "test": "jest",
+    "link": "npm link",
+    "start": "node ./src/cli"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bidoubiwa/json_batch_to_meilisearch.git"
+  },
+  "author": "Charlotte Vermandel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bidoubiwa/json_batch_to_meilisearch/issues"
+  },
+  "homepage": "https://github.com/bidoubiwa/json_batch_to_meilisearch#readme",
+  "dependencies": {
+    "commander": "^6.0.0",
+    "meilisearch": "^0.12.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.6.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "jest": "^26.4.0"
+  }
+}

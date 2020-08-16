@@ -1,7 +1,7 @@
 # Json(s) to Meilisearch
 
 
-Push a single file or a batch of files directly to meilisearch
+Push a single file or a batch of files directly to meilisearch.
 
 
 ## Requirements
@@ -84,3 +84,4 @@ No action left in the queue, final report:
 failed to upload: 0
 succeeded to upload: 1
 ```
+

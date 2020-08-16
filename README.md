@@ -28,7 +28,7 @@ npm link
 If you added the CLI, from any folder you can now use the cli `json2meili` this way:
 
 ```bash
-meili2json -p path/to/folder
+json2meili -p path/to/folder
 ```
 
 If you did not add the CLI, from the project directory use the following:

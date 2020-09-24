@@ -28,7 +28,6 @@ program.parse(process.argv)
     meiliPrimaryKey
   })
   if (settingsPath){
-    console.log({ settingsPath });
     await meiliSettings({ uid: meiliIndex, meiliAddress, meiliApiKey, settingsPath })
   }
   if (trackUpdates) {

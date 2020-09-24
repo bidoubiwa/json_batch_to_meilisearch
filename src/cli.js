@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const { Command } = require('commander')
-const { json2Meili, meiliUpdates } = require('./index.js')
+const { json2Meili, meiliUpdates, meiliSettings } = require('./index.js')
 const program = new Command()
 program
   .requiredOption('-p, --path <path>', 'Path to directory or to json file')
@@ -10,13 +10,14 @@ program
   .option('-K, --meili-primary-key <key>', 'The name of the unique field in each document')
   .option('-d, --delete-index', 'Delete index before adding the new files', false)
   .option('-t, --track-updates', 'Track meilisearch updates', true)
+  .option('-s, --settings-path <path>', 'Path to json file containing settings')
   .version('0.1.0')
   .description('Indexes json files into meilisearch')
 
 program.parse(process.argv)
 ;(async () => {
   const {
-    meiliIndex, path, meiliAddress, meiliApiKey, deleteIndex, trackUpdates, meiliPrimaryKey
+    meiliIndex, path, meiliAddress, meiliApiKey, deleteIndex, trackUpdates, meiliPrimaryKey, settingsPath
   } = program
   await json2Meili({
     uid: meiliIndex,
@@ -26,7 +27,13 @@ program.parse(process.argv)
     deleteIndex,
     meiliPrimaryKey
   })
-  if (trackUpdates) {
-    meiliUpdates({ uid: meiliIndex, meiliAddress, meiliApiKey })
+  if (settingsPath){
+    console.log({ settingsPath });
+    await meiliSettings({ uid: meiliIndex, meiliAddress, meiliApiKey, settingsPath })
   }
+  if (trackUpdates) {
+    await meiliUpdates({ uid: meiliIndex, meiliAddress, meiliApiKey })
+    console.log('done');
+  }
+
 })()

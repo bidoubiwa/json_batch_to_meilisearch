@@ -1,27 +1,6 @@
 const MeiliSearch = require('meilisearch')
-const fs = require('fs')
-const path = require('path')
+const { fileList } = require('./file_utils')
 
-function resolvePath (jsonPath) {
-  return path.resolve(process.cwd(), jsonPath)
-}
-
-function fetchFilesName (jsonPath) {
-  const stats = fs.lstatSync(jsonPath)
-  if (path.extname(jsonPath) === '.json') {
-    return [jsonPath]
-  } else if (stats.isDirectory()) {
-    return fs.readdirSync(jsonPath).filter(file => path.extname(file) === '.json').map(file => path.resolve(jsonPath, file));
-  } else {
-    throw new Error('No json found at path')
-  }
-}
-
-function fileList (jsonPath) {
-  const realPath = resolvePath(jsonPath)
-  const files = fetchFilesName(realPath)
-  return files
-}
 
 function logResult({files, uid}){
   if (files.length === 1) console.log(`One file has been added to the following index in MeiliSearch: ${uid}`);

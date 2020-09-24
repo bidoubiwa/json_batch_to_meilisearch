@@ -52,6 +52,7 @@ Options:
   -K, --meili-primary-key <key>  The name of the unique field in each document
   -d, --delete-index             Delete index before adding the new files (default: false)
   -t, --track-updates            Track meilisearch updates (default: true)
+  -s, --settings-path <path>     Path to json file containing settings
   -V, --version                  output the version number
   -h, --help                     display help for command
 ```

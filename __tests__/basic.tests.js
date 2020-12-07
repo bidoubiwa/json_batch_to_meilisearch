@@ -28,7 +28,7 @@ test('test custom address', async () => {
       meiliApiKey: 'masterKey'
     })
   } catch(e) {
-    expect(e.type).toBe('MeiliSearchCommunicationError');
+    expect(e.type).toBe('MeiliSearchApiError');
   }
 })
 
@@ -40,7 +40,7 @@ test('test custom address', async () => {
       meiliApiKey: 'masterKey'
     })
   } catch(e) {
-    expect(e.type).toBe('MeiliSearchCommunicationError');
+    expect(e.type).toBe('MeiliSearchApiError');
   }
 })
 

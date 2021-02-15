@@ -1,3 +1,4 @@
 {
- "searchableAttributes": ["title", "description"]
+ "searchableAttributes": ["title", "description"],
+ "attributesForFaceting": ["genres"]
 }

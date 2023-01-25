@@ -4,7 +4,7 @@ Push a single file or a batch of files directly to meilisearch.
 
 ## Requirements
 
-- A running meilisearch
+- A running meilisearch version >= v1
 - One or more json files
 
 ## Installation
@@ -48,10 +48,10 @@ Options:
   -p, --path <path>              Path to directory or to json file
   -u, --meili-index <uid>        Name of the index in which the json will be added (default: "my_index")
   -m, --meili-address <address>  MeiliSearch address to server (default: "http://localhost:7700")
-  -k, --meili-api-key <key>      MeiliSearch address to server
+  -k, --meili-api-key <key>      MeiliSearch address to server (default: "masterKey")
   -K, --meili-primary-key <key>  The name of the unique field in each document
   -d, --delete-index             Delete index before adding the new files (default: false)
-  -t, --track-updates            Track meilisearch updates (default: true)
+  -t, --track-tasks            Track meilisearch tasks (default: true)
   -s, --settings-path <path>     Path to json file containing settings
   -V, --version                  output the version number
   -h, --help                     display help for command
@@ -70,17 +70,20 @@ json2meili -p __tests__/assets/ -u books -d -k masterKey
 
 ### Response
 ```
-One file has been added to the following index in MeiliSearch: small_movies
-Start update watch
+One file has been added to the following index in MeiliSearch: my_index
+Start tasks watch
 -------------
-0 / 1 have been processed
-1 / 1 still enqueued
+1 / 1 tasks are still in progress
+0 / 1 tasks have failed
+0 / 1 tasks have been succesfully added
 -------------
-1 / 1 have been processed
-0 / 1 still enqueued
+0 / 1 tasks are still in progress
+0 / 1 tasks have failed
+1 / 1 tasks have been succesfully added
 -------------
-No action left in the queue, final report:
+No tasks left in the queue, final report:
 failed to upload: 0
 succeeded to upload: 1
+done
 ```
 

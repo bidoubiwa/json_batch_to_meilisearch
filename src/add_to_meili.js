@@ -1,41 +1,30 @@
-const MeiliSearch = require('meilisearch')
 const { fileList } = require('./file_utils')
-
-
-function logResult({files, uid}){
-  if (files.length === 1) console.log(`One file has been added to the following index in MeiliSearch: ${uid}`);
-  else if (files.length === 0) console.log(`No file have been added as no json file was found.`);
-  else console.log(`${files.length} files has been added to the following index in MeiliSearch: ${uid}`);
-}
+const { logResult } = require('./logs')
 
 async function json2Meili ({
-  uid = 'my_index',
-  meiliAddress = 'http://localhost:7700',
+  index,
   jsonPath,
-  meiliApiKey,
-  meiliPrimaryKey,
+  primaryKey,
   deleteIndex = false
 }) {
   try {
     const files = fileList(jsonPath)
-    const config = {
-      host: meiliAddress,
-      apiKey: meiliApiKey
-    }
-    const client = new MeiliSearch(config)
-    const indexOptions = {}
-    if (deleteIndex) {
-      try {
-        await client.getIndex(uid).deleteIndex()
-      } catch(_) {}
-    }
-    if (meiliPrimaryKey) indexOptions.primaryKey = meiliPrimaryKey
-    const index = await client.getOrCreateIndex(uid, meiliPrimaryKey)
-    const addDocs = files.map(file => index.addDocuments(require(file)))
-    const updates = await Promise.all(addDocs)
-    logResult({ files, uid })
+    const options = {}
 
-    return updates
+    if (deleteIndex) {
+      await index.delete()
+    }
+
+    if (primaryKey) {
+      options.primaryKey = primaryKey
+    }
+
+    const addDocuments = files.map(async file => index.addDocuments(require(file), options))
+    const tasks = await Promise.all(addDocuments)
+
+    logResult({ files, uid: index.uid })
+
+    return tasks
   } catch (e) {
     throw e
   }

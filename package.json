@@ -21,7 +21,7 @@
   "homepage": "https://github.com/bidoubiwa/json_batch_to_meilisearch#readme",
   "dependencies": {
     "commander": "^6.0.0",
-    "meilisearch": "^0.16.1"
+    "meilisearch": "^0.30.0"
   },
   "devDependencies": {
     "eslint": "^7.6.0",
